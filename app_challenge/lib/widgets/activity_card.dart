@@ -10,6 +10,7 @@ class ActivityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 10),
       height: 150,
       width: 150,
       decoration: BoxDecoration(
