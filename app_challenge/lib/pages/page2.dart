@@ -17,9 +17,8 @@ class Header2 extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 450,
+                height: 400,
                 color: Colors.white,
-                alignment: Alignment.bottomCenter,
                 child: Stack(
                   children: [
                     HeaderWaveGradient(),
@@ -33,17 +32,20 @@ class Header2 extends StatelessWidget {
                     physics: BouncingScrollPhysics(),
                     child: Container(
                       color: Colors.white,
-                      child: Column(
-                        children: const [
-                          PlayerCard('1', 'tonystark.jpg', 'Tony Stark', 17000),
-                          PlayerCard('2', 'tonyhawk.jpg', 'Tony Hawk', 16500),
-                          PlayerCard('3', 'freddurst.jpg', 'Fred Durst', 14450),
-                          PlayerCard('4', 'freddurst.jpg', 'Hulk', 8100),
-                          PlayerCard('5', 'tonystark.jpg', 'Cap America', 7000),
-                          PlayerCard('6', 'tonyhawk.jpg', 'Falcon', 6500),
-                          
-                          
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          children: const [
+                            PlayerCard('1', 'tonystark.jpg', 'Tony Stark', 17000),
+                            PlayerCard('2', 'tonyhawk.jpg', 'Tony Hawk', 16500),
+                            PlayerCard('3', 'freddurst.jpg', 'Fred Durst', 14450),
+                            PlayerCard('4', 'freddurst.jpg', 'Hulk', 8100),
+                            PlayerCard('5', 'tonystark.jpg', 'Cap America', 7000),
+                            PlayerCard('6', 'tonyhawk.jpg', 'Falcon', 6500),
+                            
+                            
+                          ],
+                        ),
                       ),
                     ),
                   ),
