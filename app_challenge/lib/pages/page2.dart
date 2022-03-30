@@ -1,47 +1,57 @@
-import 'package:app_challenge/widgets/bottom_menu.dart';
-import 'package:app_challenge/widgets/player_card.dart';
+import 'package:app_challenge/pages/page1.dart';
+import 'package:app_challenge/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class Header2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          Container(
-            height: 300,
-            color: Colors.white,
-            alignment: Alignment.bottomCenter,
-            child: Stack(
-              children: [
-                
-                HeaderWaveGradient(),
-                HeaderCurvo(),
-              ],
-            ),
-          ),
-          Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  color: Colors.white,
-                  child: Column(
-                    children: const [
-                      PlayerCard('1', 'tonystark.jpg', 'Tony Stark', 17000),
-                      PlayerCard('2', 'tonyhawk.jpg', 'Tony Hawk', 16500),
-                      PlayerCard('3', 'freddurst.jpg', 'Fred Durst', 14450),
-                      PlayerCard('4', 'freddurst.jpg', 'Hulk', 8100),
-                      PlayerCard('5', 'tonystark.jpg', 'Cap America', 7000),
-                      PlayerCard('6', 'tonyhawk.jpg', 'Falcon', 6500),
-                      
-                      
-                    ],
-                  ),
+    return Scaffold(
+      body: GestureDetector(
+        onPanUpdate: (details){
+            if (details.delta.dx < 20) {
+              Navigator.push(context, _crearRuta2() );
+            }
+          },
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                height: 450,
+                color: Colors.white,
+                alignment: Alignment.bottomCenter,
+                child: Stack(
+                  children: [
+                    HeaderWaveGradient(),
+                    HeaderCurvo(),
+                    InfoRanking(),
+                  ],
                 ),
               ),
-            ),
-          BottomMenu()
-        ],
+              Expanded(
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Container(
+                      color: Colors.white,
+                      child: Column(
+                        children: const [
+                          PlayerCard('1', 'tonystark.jpg', 'Tony Stark', 17000),
+                          PlayerCard('2', 'tonyhawk.jpg', 'Tony Hawk', 16500),
+                          PlayerCard('3', 'freddurst.jpg', 'Fred Durst', 14450),
+                          PlayerCard('4', 'freddurst.jpg', 'Hulk', 8100),
+                          PlayerCard('5', 'tonystark.jpg', 'Cap America', 7000),
+                          PlayerCard('6', 'tonyhawk.jpg', 'Falcon', 6500),
+                          
+                          
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              BottomMenu()
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -135,3 +145,26 @@ class _HeadedWaveGradientPainter extends CustomPainter {
     return true;
   }
 }
+
+
+Route _crearRuta2() {
+
+
+    return PageRouteBuilder(
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => MainPage(),
+      transitionDuration: const Duration(milliseconds: 800),
+      transitionsBuilder: ( context, animation, secondaryAnimation, child ) {
+
+        final curvedAnimation = CurvedAnimation(parent: animation, curve: Curves.easeOut );
+
+        return SlideTransition(
+          position: Tween<Offset>(begin: Offset(-1.0, 0.0), end: Offset.zero ).animate(curvedAnimation),
+          child: child,
+        );
+
+
+      }
+      );
+
+
+  }
