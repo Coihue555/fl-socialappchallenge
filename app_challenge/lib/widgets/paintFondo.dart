@@ -1,32 +1,31 @@
+
 import 'package:flutter/material.dart';
-
-
-class HeaderWave extends StatelessWidget {
-  final Color color;
-
-  const HeaderWave({required this.color});
-
+class HeaderWaveGradient1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
-        painter: _HeadedWavePainter(color),
+        painter: _HeadedWaveGradientPainter1(),
       ),
     );
   }
 }
 
-class _HeadedWavePainter extends CustomPainter {
-  final Color color;
-
-  _HeadedWavePainter(this.color);
+class _HeadedWaveGradientPainter1 extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final lapiz = Paint();
+    final Rect rect = Rect.fromCircle(
+      center: const Offset(165.0, 55.0),
+      radius: 180,
+    );
+    const Gradient gradiente =
+        LinearGradient(colors: <Color>[Color.fromARGB(255, 240, 76, 98), Color.fromARGB(255, 173, 52, 177)]);
+
+    final lapiz = Paint()..shader = gradiente.createShader(rect);
     //propiedades
-    lapiz.color = color;
+    lapiz.color = const Color(0xff615aab);
     lapiz.style = PaintingStyle.fill;
     lapiz.strokeWidth = 5;
 
@@ -41,17 +40,9 @@ class _HeadedWavePainter extends CustomPainter {
     //inflex1
     path.quadraticBezierTo(
         size.width * .80, size.height * 1.05,
-        size.width*.96,       size.height * 0.93);
-    
-    path.quadraticBezierTo(
-        size.width * .750, size.height * 0.9,
-        size.width*0.5,       size.height * 0.66);
+        size.width,       size.height * 0.91);
+    path.lineTo(size.width, 0);
 
-    path.quadraticBezierTo(
-        size.width * .250, size.height * 0.4,
-        0,       size.height * 0.45);
-
-    path.lineTo(0, size.height*0.4);
     canvas.drawPath(path, lapiz);
   }
 
@@ -60,3 +51,5 @@ class _HeadedWavePainter extends CustomPainter {
     return true;
   }
 }
+
+

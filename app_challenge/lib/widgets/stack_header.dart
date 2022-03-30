@@ -1,4 +1,7 @@
-import 'package:app_challenge/widgets/headers.dart';
+
+import 'package:app_challenge/widgets/paintFondo.dart';
+import 'package:app_challenge/widgets/paintRosa3.dart';
+import 'package:app_challenge/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 
@@ -10,7 +13,12 @@ class StackHeader extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
+       
+        HeaderWaveGradient1(),
+        HeaderWaveGradient3(),
+        HeaderWaveGradient2(),
         HeaderWave(color: Color.fromARGB(255, 240, 76, 98)),
+        
         Positioned(
           bottom: 10,
           left: 20,
@@ -21,8 +29,8 @@ class StackHeader extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Good', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
-                      const Text('Sanwik Pachino', style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold)),
+                      FadeIn(child: const Text('Good', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold))),
+                      FadeIn(child: FlipInX(child: const Text('Sanwik Pachino', style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold)))),
                       const SizedBox(height: 60,),
                       Text('Start a new journey', style: TextStyle(color: Colors.grey.shade800, fontSize: 22, fontWeight: FontWeight.bold))
                     ],
@@ -42,7 +50,7 @@ class StackHeader extends StatelessWidget {
                           from:8,
                           child: Text('Cloudy', style: TextStyle(color: Colors.white, fontSize: 22))),
                       ),
-                      Container(width: 80, height: 70,),
+                      Container(width: 80, height: 20,),
                     ],
                   )
                 ],

@@ -37,8 +37,8 @@ class MainPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: const[
-                        ActivityCard('Walking', 'walk.png'),
-                        ActivityCard('Cycling', 'cycling.png'),
+                        ActivityCard('Driving', 'car.png'),
+                        ActivityCard('Train', 'train.png'),
                         
                       ],
                     ),
@@ -46,8 +46,8 @@ class MainPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: const[
-                        ActivityCard('Walking', 'walk.png'),
-                        ActivityCard('Cycling', 'cycling.png'),
+                        ActivityCard('Hicking', 'hicking.png'),
+                        ActivityCard('Flight', 'flight.png'),
                         
                       ],
                     ),

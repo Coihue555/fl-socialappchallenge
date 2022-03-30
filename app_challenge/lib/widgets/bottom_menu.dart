@@ -7,8 +7,6 @@ class BottomMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      padding: EdgeInsets.all(5),
-      margin: EdgeInsets.all(5),
       color: Colors.white,
       height: 80,
       width: double.infinity,
