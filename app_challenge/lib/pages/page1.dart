@@ -63,7 +63,13 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SocialMenu(items: [],)
+              SocialMenu(items: [
+                SocialButton(icon: Icons.home, onPressed: () {}),
+                SocialButton(icon: Icons.restore, onPressed: () {}),
+                SocialButton(icon: Icons.person, onPressed: () {}),
+                SocialButton(icon: Icons.bar_chart_sharp, onPressed: () {}),
+                SocialButton(icon: Icons.notifications_none_outlined, onPressed: () {}, )
+              ],)
             ],
           ),
         ),

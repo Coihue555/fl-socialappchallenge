@@ -1,7 +1,6 @@
 export 'package:app_challenge/widgets/headers.dart';
 export 'package:app_challenge/widgets/stack_header.dart';
 export 'package:app_challenge/widgets/activity_card.dart';
-export 'package:app_challenge/widgets/bottom_menu.dart';
 export 'package:app_challenge/widgets/paintAmarillo.dart';
 export 'package:app_challenge/widgets/info_ranking.dart';
 export 'package:app_challenge/widgets/paintFondo.dart';
@@ -11,4 +10,3 @@ export 'package:app_challenge/widgets/stack_header.dart';
 export 'package:app_challenge/widgets/time_range.dart';
 export 'package:app_challenge/widgets/select_winners.dart';
 export 'package:app_challenge/widgets/poll_info.dart';
-export 'package:app_challenge/widgets/menu_widget.dart';

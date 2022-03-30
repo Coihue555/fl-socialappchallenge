@@ -1,72 +1,130 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class TimeRangeMenu extends StatefulWidget {
+class SocialButton{
+  final Function() onPressed;
+  final IconData icon;
 
+  SocialButton({ 
+    required this.onPressed,
+    required this.icon});
 
-  @override
-  State<TimeRangeMenu> createState() => _TimeRangeMenuState();
 }
 
-class _TimeRangeMenuState extends State<TimeRangeMenu> {
+
+class SocialMenu extends StatelessWidget {
+
+  final bool mostrar;
+  final Color backgroundColor;
+  final Color activeColor;      
+  final Color inactiveColor;
+  final List<SocialButton> items;    
+
+
+
+  const SocialMenu({
+    this.mostrar         = true,
+    this.backgroundColor = Colors.white,
+    this.activeColor     = Colors.red,
+    this.inactiveColor   = Colors.blueGrey,
+    required this.items
+    });
+
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: 380,
-      height: 40,
-      decoration: BoxDecoration(
-        color: Colors.deepPurple,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            alignment: Alignment.center,
-            height: 40,
-            width: 100,
-            child: Text('Today', style: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold)),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
-              
-            ),
-
-          ),
-          Container(
-            alignment: Alignment.center,
-            height: 40,
-            width: 100,
-            child: Text('Month', style: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold)),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
-              
-            ),
-
-          ),
-          Container(
-            alignment: Alignment.center,
-            height: 40,
-            width: 100,
-            child: Text('All time', style: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold)),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(30),
-              
-            ),
-
-          )
-        ],
+    return ChangeNotifierProvider(
+      create: ( _ ) => _MenuModel(),
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 250),
+        opacity: ( mostrar ) ? 1 : 0,
+        child: Builder(
+          builder: (context) {
+            Provider.of<_MenuModel>(context).backgroundColor = backgroundColor;
+            Provider.of<_MenuModel>(context).activeColor     = activeColor;
+            Provider.of<_MenuModel>(context).inactiveColor   = inactiveColor;
+            return _SocialMenuBackground(
+              child: _MenuItems(items),
+             );
+          }
+        ),
       ),
     );
   }
 }
 
+class _SocialMenuBackground extends StatelessWidget {
+
+  final Widget child;
+  const _SocialMenuBackground({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+
+    Color backgroundColor = Provider.of<_MenuModel>(context).backgroundColor;
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: child,
+      width: double.infinity,
+      height: 60,
+      
+    );
+  }
+}
+
+class _MenuItems extends StatelessWidget {
+
+  final List<SocialButton> menuItems;
+
+  const _MenuItems( this.menuItems );
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: List.generate(menuItems.length, (index) => _SocialMenuButton( index, menuItems[index] ) )
+    );
+  }
+}
+
+class _SocialMenuButton extends StatelessWidget {
+  final int index;
+  final SocialButton item;
+
+  const _SocialMenuButton(
+    this.index,
+    this.item
+  );
+  
+  @override
+  Widget build(BuildContext context) {
+
+    final itemSeleccionado = Provider.of<_MenuModel>(context).itemSeleccionado;
+    final menuModel = Provider.of<_MenuModel>(context);
+
+    return GestureDetector(
+      onTap: (){
+        Provider.of<_MenuModel>(context, listen: false).itemSeleccionado = index;
+        item.onPressed();
+      },
+      behavior: HitTestBehavior.translucent,
+      child: Container(
+        child: Icon(
+          item.icon,
+          size: ( itemSeleccionado == index ) ? 40 : 38,
+          color: ( itemSeleccionado == index ) ? menuModel.activeColor : menuModel.inactiveColor,
+          ),
+      ),
+    );
+  }
+}
+
+
 class _MenuModel extends ChangeNotifier{
   int _itemSeleccionado = 0;
-  Color activeColor     = Colors.white;
-  Color inactiveColor   = Colors.deepPurple;
+  Color backgroundColor = Colors.white;
+  Color activeColor     = Colors.black;
+  Color inactiveColor   = Colors.blueGrey;
   
   int get itemSeleccionado => _itemSeleccionado;
   set itemSeleccionado( int index ){

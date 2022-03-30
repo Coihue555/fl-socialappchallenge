@@ -11,19 +11,19 @@ class InfoRanking extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Container(
-              margin: EdgeInsets.only(top:80),
-              child: SelectWinners(),
+              margin: const EdgeInsets.only(top:40),
+              child: const SelectWinners(),
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TimeRangeMenu()
+              //TimeRangeMenu()
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const[
               PollInfo('tonystark.jpg', 'Tony Stakss', '17500', false),
               PollInfo('freddurst.jpg', 'Fred Durst', '19580', true),
               PollInfo('tonyhawk.jpg', 'Tony Hawk', '15500', false),

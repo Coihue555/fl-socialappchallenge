@@ -25,7 +25,7 @@ class SocialMenu extends StatelessWidget {
   const SocialMenu({
     this.mostrar         = true,
     this.backgroundColor = Colors.white,
-    this.activeColor     = Colors.black,
+    this.activeColor     = Colors.red,
     this.inactiveColor   = Colors.blueGrey,
     required this.items
     });
@@ -63,20 +63,11 @@ class _SocialMenuBackground extends StatelessWidget {
 
     Color backgroundColor = Provider.of<_MenuModel>(context).backgroundColor;
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: child,
-      width: 250,
+      width: double.infinity,
       height: 60,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: const <BoxShadow>[
-          BoxShadow(
-            blurRadius: 10,
-            color: Colors.black38,
-            spreadRadius: -5
-          )
-        ]
-      ),
+      
     );
   }
 }
@@ -90,7 +81,7 @@ class _MenuItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(menuItems.length, (index) => _SocialMenuButton( index, menuItems[index] ) )
     );
   }
@@ -120,7 +111,7 @@ class _SocialMenuButton extends StatelessWidget {
       child: Container(
         child: Icon(
           item.icon,
-          size: ( itemSeleccionado == index ) ? 30 : 20,
+          size: ( itemSeleccionado == index ) ? 40 : 38,
           color: ( itemSeleccionado == index ) ? menuModel.activeColor : menuModel.inactiveColor,
           ),
       ),

@@ -8,8 +8,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: Header2(),
-      //home: MainPage(),
+      //home: Header2(),
+      home: MainPage(),
       
     );
   }
