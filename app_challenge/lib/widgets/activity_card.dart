@@ -12,7 +12,7 @@ class ActivityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return JelloIn(
       child: Container(
-        margin: EdgeInsets.only(bottom: 10),
+        margin: EdgeInsets.only(bottom: 15),
         height: 120,
         width: 170,
         decoration: BoxDecoration(
