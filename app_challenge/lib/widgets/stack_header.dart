@@ -1,9 +1,8 @@
 
-import 'package:app_challenge/widgets/paintFondo.dart';
-import 'package:app_challenge/widgets/paintRosa3.dart';
-import 'package:app_challenge/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:app_challenge/widgets/widgets.dart';
+
 
 class StackHeader extends StatelessWidget {
 
@@ -30,7 +29,9 @@ class StackHeader extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FadeIn(child: const Text('Good', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold))),
-                      FadeIn(child: FlipInX(child: const Text('Sanwik Pachino', style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold)))),
+                      FadeIn(
+                        duration: Duration(milliseconds: 1000),
+                        child: FlipInX(child: const Text('Sanwik Pachino', style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold)))),
                       const SizedBox(height: 60,),
                       Text('Start a new journey', style: TextStyle(color: Colors.grey.shade800, fontSize: 22, fontWeight: FontWeight.bold))
                     ],
@@ -39,7 +40,8 @@ class StackHeader extends StatelessWidget {
                   Column(
                     children: [
                       SlideInRight(
-                        from: 8,
+                        duration: Duration(milliseconds: 1000),
+                        from: 10,
                         child: Icon(Icons.cloud, size: 50, color: Colors.white,)),
                       SlideInRight(
                         from: 10,
@@ -47,7 +49,8 @@ class StackHeader extends StatelessWidget {
                       SlideInLeft(
                         from: 8,
                         child: SlideInUp(
-                          from:8,
+                          duration: Duration(milliseconds: 1000),
+                          from:10,
                           child: Text('Cloudy', style: TextStyle(color: Colors.white, fontSize: 22))),
                       ),
                       Container(width: 80, height: 20,),
