@@ -16,9 +16,15 @@ class InfoRanking extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              //TimeRangeMenu()
+              // TimeRangeMenu(
+              //   items: [
+              //   TimeRangeButton(period: 'Today'),
+              //   TimeRangeButton(period: 'Monthly'),
+              //   TimeRangeButton(period: 'All time'),
+              // ],
+              // )
             ],
           ),
           Row(

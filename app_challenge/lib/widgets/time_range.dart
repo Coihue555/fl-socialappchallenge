@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SocialButton{
-  final Function() onPressed;
-  final IconData icon;
+class TimeRangeButton{
+  final String period;
 
-  SocialButton({ 
-    required this.onPressed,
-    required this.icon});
+  TimeRangeButton({ 
+    
+    required this.period});
 
 }
 
 
-class SocialMenu extends StatelessWidget {
+class TimeRangeMenu extends StatelessWidget {
 
   final bool mostrar;
   final Color backgroundColor;
   final Color activeColor;      
   final Color inactiveColor;
-  final List<SocialButton> items;    
+  final List<TimeRangeButton> items;    
 
 
 
-  const SocialMenu({
+  const TimeRangeMenu({
     this.mostrar         = true,
     this.backgroundColor = Colors.white,
-    this.activeColor     = Colors.red,
+    this.activeColor     = Colors.deepPurple,
     this.inactiveColor   = Colors.blueGrey,
     required this.items
     });
@@ -34,17 +33,17 @@ class SocialMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: ( _ ) => _MenuModel(),
+      create: ( _ ) => _TimeRangeModel(),
       child: AnimatedOpacity(
         duration: const Duration(milliseconds: 250),
         opacity: ( mostrar ) ? 1 : 0,
         child: Builder(
           builder: (context) {
-            Provider.of<_MenuModel>(context).backgroundColor = backgroundColor;
-            Provider.of<_MenuModel>(context).activeColor     = activeColor;
-            Provider.of<_MenuModel>(context).inactiveColor   = inactiveColor;
-            return _SocialMenuBackground(
-              child: _MenuItems(items),
+            Provider.of<_TimeRangeModel>(context).backgroundColor = backgroundColor;
+            Provider.of<_TimeRangeModel>(context).activeColor     = activeColor;
+            Provider.of<_TimeRangeModel>(context).inactiveColor   = inactiveColor;
+            return _TimeRangeMenuBackground(
+              child: _TimeRangeItems(items),
              );
           }
         ),
@@ -53,45 +52,45 @@ class SocialMenu extends StatelessWidget {
   }
 }
 
-class _SocialMenuBackground extends StatelessWidget {
+class _TimeRangeMenuBackground extends StatelessWidget {
 
   final Widget child;
-  const _SocialMenuBackground({required this.child});
+  const _TimeRangeMenuBackground({required this.child});
 
   @override
   Widget build(BuildContext context) {
 
-    Color backgroundColor = Provider.of<_MenuModel>(context).backgroundColor;
+    Color backgroundColor = Provider.of<_TimeRangeModel>(context).backgroundColor;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: child,
-      width: double.infinity,
+      width: 100,
       height: 60,
       
     );
   }
 }
 
-class _MenuItems extends StatelessWidget {
+class _TimeRangeItems extends StatelessWidget {
 
-  final List<SocialButton> menuItems;
+  final List<TimeRangeButton> menuItems;
 
-  const _MenuItems( this.menuItems );
+  const _TimeRangeItems( this.menuItems );
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: List.generate(menuItems.length, (index) => _SocialMenuButton( index, menuItems[index] ) )
+      children: List.generate(menuItems.length, (index) => _TimeRangeMenuButton( index, menuItems[index] ) )
     );
   }
 }
 
-class _SocialMenuButton extends StatelessWidget {
+class _TimeRangeMenuButton extends StatelessWidget {
   final int index;
-  final SocialButton item;
+  final TimeRangeButton item;
 
-  const _SocialMenuButton(
+  const _TimeRangeMenuButton(
     this.index,
     this.item
   );
@@ -99,28 +98,40 @@ class _SocialMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final itemSeleccionado = Provider.of<_MenuModel>(context).itemSeleccionado;
-    final menuModel = Provider.of<_MenuModel>(context);
+    final itemSeleccionado = Provider.of<_TimeRangeModel>(context).itemSeleccionado;
+    final menuModel = Provider.of<_TimeRangeModel>(context);
 
     return GestureDetector(
       onTap: (){
-        Provider.of<_MenuModel>(context, listen: false).itemSeleccionado = index;
-        item.onPressed();
       },
       behavior: HitTestBehavior.translucent,
       child: Container(
-        child: Icon(
-          item.icon,
-          size: ( itemSeleccionado == index ) ? 40 : 38,
-          color: ( itemSeleccionado == index ) ? menuModel.activeColor : menuModel.inactiveColor,
+        child: Container(
+          
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 34, 7, 82),
+            borderRadius: BorderRadius.circular(10)
           ),
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                child: Text(
+                  item.period, style: TextStyle(fontSize: 20,
+                  color: ( itemSeleccionado == index ) ? menuModel.activeColor : menuModel.inactiveColor,)
+                ),
+              ),
+
+            ],
+          ),
+        ),
       ),
     );
   }
 }
 
 
-class _MenuModel extends ChangeNotifier{
+class _TimeRangeModel extends ChangeNotifier{
   int _itemSeleccionado = 0;
   Color backgroundColor = Colors.white;
   Color activeColor     = Colors.black;

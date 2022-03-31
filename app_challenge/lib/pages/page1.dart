@@ -1,3 +1,4 @@
+import 'package:app_challenge/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:app_challenge/pages/page2.dart';
 import '../widgets/widgets.dart';
